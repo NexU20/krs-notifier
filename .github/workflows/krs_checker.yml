@@ -2,7 +2,7 @@ name: KRS Checker Bot
 
 on:
   schedule:
-    - cron: "0 */2 * * *" # Setiap 2 jam
+    - cron: "*/5 * * * *" # Setiap 5 menit
   workflow_dispatch:
 
 permissions:
