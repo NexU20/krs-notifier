@@ -6,7 +6,7 @@ import os
 # --- Parameter konfigurasi ---
 NIM = os.getenv("NIM")
 PASSWORD = os.getenv("PASSWORD")
-TAHUN_MASUK = 2024
+TAHUN_MASUK = 2023
 TOKEN_BOT = os.getenv("TELEGRAM_BOT_TOKEN")
 # CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 # CHAT_ID = "1309796236"
@@ -15,7 +15,7 @@ known_chat_ids = set()
 
 jwt_token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTA3NDUzIiwibmltIjoiMTEyMzA5MTAwMDAwOTciLCJuYW1hIjoiTElOREFOIEFLQkFSIEZJUkRBVVMiLCJob3N0IjoiaHR0cDovL2FwaS51aW5qa3QuYWMuaWQiLCJpYXQiOjE3NTQ1NDM3NjMsImV4cCI6MTc1NTE0ODU2M30.0ieE09ih7lxuLHbImJjc_TTTikqZpnFQ1h2-YTsbKe4"
 user_agent = "Mozilla/5.0"
-endpoint_base = "https://api.uinjkt.ac.id/ais/resources/mahasiswa-v3/list_krs/"
+endpoint_base = "https://api.uinjkt.ac.id/ais/resources/mahasiswa-v3/penawaran_krs/"
 
 # Util: get chat_ids from Telegram
 def get_chat_ids():
