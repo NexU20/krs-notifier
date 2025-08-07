@@ -1,0 +1,47 @@
+name: KRS Checker Bot
+
+on:
+  schedule:
+    - cron: "0 */2 * * *" # Setiap 2 jam
+  workflow_dispatch:
+
+permissions:
+  contents: write # Diperlukan untuk commit dan push file chat_ids.txt
+
+jobs:
+  check-krs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Jalankan pengecekan KRS
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          NIM: ${{ secrets.NIM }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: |
+          python krs.py
+
+      - name: Setup Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit updated chat_ids.txt
+        run: |
+          if [ -f chat_ids.txt ]; then
+            git add chat_ids.txt
+            git commit -m "Update chat_ids.txt [CI]" || echo "Nothing to commit"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
