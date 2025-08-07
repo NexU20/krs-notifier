@@ -34,7 +34,7 @@ def load_chat_ids(file_path="chat_ids.txt"):
     try:
         with open(file_path, "r") as f:
             chat_ids = [line.strip() for line in f.readlines() if line.strip()]
-            print(chat_ids)
+            print(list(set(chat_ids)))
             return list(set(chat_ids))  # menghapus duplikat
     except FileNotFoundError:
         print("File chat_ids.txt tidak ditemukan.")
