@@ -6,7 +6,7 @@ import os
 # --- Parameter konfigurasi ---
 NIM = os.getenv("NIM")
 PASSWORD = os.getenv("PASSWORD")
-TAHUN_MASUK = 2025
+TAHUN_MASUK = 2023
 TOKEN_BOT = os.getenv("TELEGRAM_BOT_TOKEN")
 # CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 # CHAT_ID = "1309796236"
