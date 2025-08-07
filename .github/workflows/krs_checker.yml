@@ -43,5 +43,6 @@ jobs:
           if [ -f chat_ids.txt ]; then
             git add chat_ids.txt
             git commit -m "Update chat_ids.txt [CI]" || echo "Nothing to commit"
+            git pull --rebase origin ${{ github.ref_name }} || echo "Rebase failed, continuing anyway"
             git push origin HEAD:${{ github.ref_name }}
           fi
