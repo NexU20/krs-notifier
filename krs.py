@@ -13,7 +13,6 @@ TOKEN_BOT = os.getenv("TELEGRAM_BOT_TOKEN")
 URL = f"https://api.telegram.org/bot{TOKEN_BOT}/getUpdates"
 known_chat_ids = set()
 
-jwt_token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTA3NDUzIiwibmltIjoiMTEyMzA5MTAwMDAwOTciLCJuYW1hIjoiTElOREFOIEFLQkFSIEZJUkRBVVMiLCJob3N0IjoiaHR0cDovL2FwaS51aW5qa3QuYWMuaWQiLCJpYXQiOjE3NTQ1NDM3NjMsImV4cCI6MTc1NTE0ODU2M30.0ieE09ih7lxuLHbImJjc_TTTikqZpnFQ1h2-YTsbKe4"
 user_agent = "Mozilla/5.0"
 endpoint_base = "https://api.uinjkt.ac.id/ais/resources/mahasiswa-v3/penawaran_krs/"
 
