@@ -30,6 +30,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           NIM: ${{ secrets.NIM }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
         run: |
           python krs.py
 

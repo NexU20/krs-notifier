@@ -5,11 +5,11 @@ import os
 from pymongo import MongoClient
 
 # --- Parameter konfigurasi ---
-NIM = os.getenv("NIM")
-PASSWORD = os.getenv("PASSWORD")
+NIM = 11230910000097
+PASSWORD = "lindanA049"
 TAHUN_MASUK = 2023
 TOKEN_BOT = os.getenv("TELEGRAM_BOT_TOKEN")
-MONGO_URI = os.getenv("MONGO_URI")
+MONGO_URI = "mongodb+srv://krs-user:Xm5Lkh3QzS4ouHNW@cluster0.5buw3zf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 # CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 # CHAT_ID = "1309796236"
 URL = f"https://api.telegram.org/bot{TOKEN_BOT}/getUpdates"
@@ -79,6 +79,7 @@ def login():
 
         if data.get("code") == "200" and data.get("status") == "OK":
             token = data["data"].get("token")
+            save_token(token)
             print("Login berhasil. Token diterima.")
             return token
         else:
@@ -141,7 +142,7 @@ def cek_krs(token):
     try:
         response = requests.get(url, headers=headers)
 
-        if response.status_code is not 200 and response.text.strip() is "Token tidak valid":  # Unauthorized -> token invalid
+        if response.status_code != 200 and response.text.strip() == "Token tidak valid":  # Unauthorized -> token invalid
             print("Token expired/invalid, login ulang...")
             token = login()
             if token:
@@ -151,7 +152,7 @@ def cek_krs(token):
         if response.status_code == 200:
             data = response.json()
 
-            if data and isinstance(data.get("perkuliahan"), list) and len(data["perkuliahan"]) > 0 or data is not None:
+            if data and isinstance(data.get("perkuliahan"), list) and len(data["perkuliahan"]) > 0 or data != None:
                 # pesan = format_perkuliahan(data["perkuliahan"], sms)
                 pesan = f"Oh Great Master, KRS anda untuk semester {sms} sudah bisa diisi!"
 
@@ -177,6 +178,7 @@ if __name__ == "__main__":
         login_token = login()
     # # print("🔑 Token login:", login_token)
     if login_token:
+        print("🔑 Token berhasil didapatkan, melanjutkan pengecekan KRS...")
         cek_krs(login_token)
     else:
         print("❌ Gagal mendapatkan token, tidak bisa melanjutkan.")
