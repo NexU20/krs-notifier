@@ -1,8 +1,8 @@
 name: KRS Checker Bot
 
 on:
-  schedule:
-    - cron: "*/5 * * * *" # Setiap 5 menit
+  # schedule:
+  #   - cron: "*/5 * * * *" # Setiap 5 menit
   workflow_dispatch:
 
 permissions:
@@ -38,11 +38,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit updated chat_ids.txt
-        run: |
-          if [ -f chat_ids.txt ]; then
-            git add chat_ids.txt
-            git commit -m "Update chat_ids.txt [CI] on $(date +'%Y-%m-%d %H:%M:%S')" || echo "Nothing to commit"
-            git pull --rebase origin ${{ github.ref_name }} || echo "Rebase failed, continuing anyway"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
+      # - name: Commit updated chat_ids.txt
+      #   run: |
+      #     if [ -f chat_ids.txt ]; then
+      #       git add chat_ids.txt
+      #       git commit -m "Update chat_ids.txt [CI] on $(date +'%Y-%m-%d %H:%M:%S')" || echo "Nothing to commit"
+      #       git pull --rebase origin ${{ github.ref_name }} || echo "Rebase failed, continuing anyway"
+      #       git push origin HEAD:${{ github.ref_name }}
+      #     fi

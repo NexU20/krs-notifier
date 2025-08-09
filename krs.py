@@ -126,6 +126,7 @@ def cek_krs(token):
                 pesan = format_perkuliahan(data["perkuliahan"], sms)
                 print("✅ KRS tersedia, mengirim notifikasi ke Master...")
                 chat_ids = load_chat_ids()  # Ambil chat_ids dari file
+                print(f"Chat IDs yang akan menerima notifikasi: {chat_ids}")
                 send_telegram_message(TOKEN_BOT, pesan + "\n\nPraise The Fool!", chat_ids)
                 # kirim_notifikasi(pesan + "\n\nPraise The Fool!")
             else:
@@ -138,7 +139,7 @@ def cek_krs(token):
 
 # --- Jalankan ---
 if __name__ == "__main__":
-    get_chat_ids()  # Ambil chat_ids dari Telegram
+    # get_chat_ids()  # Ambil chat_ids dari Telegram
     login_token = login()
-    # print("🔑 Token login:", login_token)
+    # # print("🔑 Token login:", login_token)
     cek_krs(login_token)
