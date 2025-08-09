@@ -123,11 +123,12 @@ def cek_krs(token):
             data = response.json()
 
             if data and isinstance(data.get("perkuliahan"), list) and len(data["perkuliahan"]) > 0 or data is not None:
-                pesan = format_perkuliahan(data["perkuliahan"], sms)
+                # pesan = format_perkuliahan(data["perkuliahan"], sms)
+                pesan = f"Oh Great Master, KRS anda untuk semester {sms} sudah bisa diisi!"
                 print("✅ KRS tersedia, mengirim notifikasi ke Master...")
                 chat_ids = load_chat_ids()  # Ambil chat_ids dari file
                 print(f"Chat IDs yang akan menerima notifikasi: {chat_ids}")
-                send_telegram_message(TOKEN_BOT, pesan + "\n\nPraise The Fool!", chat_ids)
+                send_telegram_message(TOKEN_BOT, pesan, chat_ids)
                 # kirim_notifikasi(pesan + "\n\nPraise The Fool!")
             else:
                 print("❌ KRS belum tersedia (data kosong/null).")
