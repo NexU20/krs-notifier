@@ -6,7 +6,7 @@ import os
 # --- Parameter konfigurasi ---
 NIM = os.getenv("NIM")
 PASSWORD = os.getenv("PASSWORD")
-TAHUN_MASUK = 2023
+TAHUN_MASUK = 2024
 TOKEN_BOT = os.getenv("TELEGRAM_BOT_TOKEN")
 # CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 # CHAT_ID = "1309796236"
@@ -14,7 +14,7 @@ URL = f"https://api.telegram.org/bot{TOKEN_BOT}/getUpdates"
 known_chat_ids = set()
 
 user_agent = "Mozilla/5.0"
-endpoint_base = "https://api.uinjkt.ac.id/ais/resources/mahasiswa-v3/penawaran_krs/"
+endpoint_base = "https://api.uinjkt.ac.id/ais/resources/mahasiswa-v3/list_krs/"
 
 # Util: get chat_ids from Telegram
 def get_chat_ids():
@@ -124,7 +124,8 @@ def cek_krs(token):
 
             if data and isinstance(data.get("perkuliahan"), list) and len(data["perkuliahan"]) > 0 or data is not None:
                 # pesan = format_perkuliahan(data["perkuliahan"], sms)
-                pesan = f"Oh Great Master, KRS anda untuk semester {sms} sudah bisa diisi!"
+                pesan = f"INI TEST\n\nOh Great Master, KRS anda untuk semester {sms} sudah bisa diisi!"
+
                 print("✅ KRS tersedia, mengirim notifikasi ke Master...")
                 chat_ids = load_chat_ids()  # Ambil chat_ids dari file
                 print(f"Chat IDs yang akan menerima notifikasi: {chat_ids}")
